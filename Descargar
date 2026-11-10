@@ -1,0 +1,31 @@
+import os
+import pandas as pd
+
+# Nombre de la carpeta única para los escudos
+CARPETA_DESTINO = "escudos"
+
+# Crear la carpeta si no existe
+if not os.path.exists(CARPETA_DESTINO):
+    os.makedirs(CARPETA_DESTINO)
+    print(f"Carpeta creada exitosamente: '{CARPETA_DESTINO}/'")
+
+# Cargar el archivo CSV con la lista de equipos
+df = pd.read_csv('escudos_nombres_archivos.csv')
+
+print(f"Total de escudos a gestionar: {len(df)}")
+print(f"Los archivos se guardarán en la carpeta raíz del repositorio: {CARPETA_DESTINO}/")
+
+# Ejemplo de cómo puedes iterar y estructurar tus archivos para GitHub:
+for index, row in df.iterrows():
+    liga = row['Liga / competición']
+    equipo = row['Equipo']
+    nombre_archivo = row['Nombre del archivo']
+    
+    # Ruta final donde se ubicará cada archivo PNG
+    ruta_completa = os.path.join(CARPETA_DESTINO, nombre_archivo)
+    
+    # Aquí puedes agregar la lógica de descarga (por ejemplo, usando requests o wget si tienes URLs directas)
+    # Por ahora, dejamos listo el mapeo exacto para tus 288 archivos.
+    pass
+
+print("¡Estructura lista para GitHub!")
